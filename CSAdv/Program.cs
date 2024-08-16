@@ -14,12 +14,20 @@ namespace CSAdv31
             this.Value = value;
         }
     }
-
     class WantedTest<T, U>
            where T : IComparable
            where U : IComparable, IDisposable
     {
 
+    }
+
+    class SquareCalculator
+    {
+        public int this[int i]
+        {
+            get { return i * i; }
+            set { Console.WriteLine("{0}번째 상품 설정", i); }
+        }
     }
 
     internal class Program
@@ -32,6 +40,12 @@ namespace CSAdv31
             Console.WriteLine(wantedString.Value);
             Console.WriteLine(wantedInt.Value);
             Console.WriteLine(wantedDouble.Value);
+
+            SquareCalculator sc = new SquareCalculator();
+            Console.WriteLine(sc[10]);
+            Console.WriteLine(sc[11]);
+            Console.WriteLine(sc[40]);
+            sc[3] = 4;
 
 
         }
