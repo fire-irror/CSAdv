@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
-using System.Runtime.InteropServices.Expando;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace CSAdv31
 {
     class Wanted<T>
@@ -14,6 +15,7 @@ namespace CSAdv31
             this.Value = value;
         }
     }
+
     class WantedTest<T, U>
            where T : IComparable
            where U : IComparable, IDisposable
@@ -32,11 +34,19 @@ namespace CSAdv31
 
     internal class Program
     {
+        static void NextPosition(int x, int y, int vx, int vy,
+            out int rx, out int ry)
+        {
+            rx = x + vx;
+            ry = y + vy;
+        }
+
         static void Main(string[] args)
         {
             Wanted<string> wantedString = new Wanted<string>("string");
             Wanted<int> wantedInt = new Wanted<int>(52273);
             Wanted<double> wantedDouble = new Wanted<double>(52.273);
+
             Console.WriteLine(wantedString.Value);
             Console.WriteLine(wantedInt.Value);
             Console.WriteLine(wantedDouble.Value);
@@ -60,6 +70,13 @@ namespace CSAdv31
                 Console.WriteLine("숫자를 입력해주세요");
             }
 
+            int x = 0;
+            int y = 0;
+            int vx = 1;
+            int vy = 1;
+            Console.WriteLine("현재 좌표: (" + x + ", " + y + ")");
+            NextPosition(x, y, vx, vy, out x, out y);
+            Console.WriteLine("현재 좌표: (" + x + ", " + y + ")");
 
         }
     }
